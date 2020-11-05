@@ -36,7 +36,8 @@ class RootController: UIViewController {
         
         tableView.register(RootCell.self, forCellReuseIdentifier: "RootCell")
        
-        
+        tableView.delegate = self
+        tableView.dataSource = self
         view.addSubview(tableView)
         tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
@@ -75,7 +76,31 @@ class RootController: UIViewController {
             
         }
     }
-
 }
 
-
+//MARK: - Tableview delegate and datasource
+extension RootController:UITableViewDelegate,UITableViewDataSource{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.rows.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RootCell", for: indexPath) as! RootCell
+        
+        let row = self.rows[indexPath.row]
+        cell.configureCell(row: row)
+        
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+}
