@@ -71,7 +71,6 @@ class RootCell: UITableViewCell {
         titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
         titleLabel.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .vertical)
-       
     }
     
     //MARK:- Setup desc labl
